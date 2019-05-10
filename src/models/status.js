@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
+
 const StatusSchema = new mongoose.Schema({
+    _id: Number,
     codigo: { type: String, required: true },
     nome: { type: String, required: true },
- });
+ }, { _id: false, timestamps: { createdAt: 'created_at' } });
 
+StatusSchema.plugin(AutoIncrement);
 module.exports = mongoose.model('Status', StatusSchema);

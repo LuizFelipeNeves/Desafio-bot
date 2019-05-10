@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 const mongoose = require('mongoose');
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 
@@ -14,5 +13,5 @@ const CPUSchema = new mongoose.Schema({
   },
 }, { _id: false, timestamps: { createdAt: 'created_at' } });
 
-CPUSchema.plugin(AutoIncrement);
+CPUSchema.plugin(AutoIncrement, 'CPU');
 module.exports = mongoose.model('CPU', CPUSchema);

@@ -1,11 +1,10 @@
-/* eslint-disable no-console */
 /* eslint-disable import/no-unresolved */
 const mongoose = require('mongoose');
 const moment = require('moment');
 moment.locale('pt-br');
 
-const Time = require('../models/time');
 const CPU = require('../models/cpu');
+const Time = require('../models/time');
 const Status = require('../models/status');
 
 require('dotenv').config({path:'.env'})
@@ -15,7 +14,7 @@ require('dotenv').config({path:'.env'})
 mongoose.connect(process.env.BDCONFIG, { useNewUrlParser: true });
 
 module.exports = {
-  async  GetTime() {
+  async GetTime() {
     const data = await Time.findOne({});
     if(!data) {
       const json = {time: 5}
@@ -35,23 +34,31 @@ module.exports = {
     if(nome) if(nome.codigo !== null) return { data, 'codigo': nome.codigo };
     return { data, 'codigo': 'indefinido' };
   },
+
+    
+  async NewCPU(body) {
+    await CPU.create(body);
+  },
+  async DeleteCPU(id) {
+    return CPU.deleteOne({ _id: id })
+  },
   async UpdateCPU(id, body) {
-    await console.log(id, body);
     return CPU.updateOne({ _id: id }, { $set: body })
   },
+
+
   async NewStatus(nome, codigo) {
     await Status.create({ nome, codigo });
   },
   async UpdateStatus(id, body) {
     return Status.updateOne({ _id: id }, { $set: body })
   },
-  async DeleteStatus(id) {
-    return Status.deleteOne({ _id: id })
+  async DeleteStatus(_id) {
+    if(_id) await Status.deleteOne({ _id }, (err) => {
+      if (err) return { data: '', err};
+      else return { data: _id + 'is deleted', err};
+    });
+    else return { data: '', err: ['Informe o ID!']}; 
+    
   },   
-  async NewCPU(body) {
-    await CPU.create(body);
-  },
-  async DeleteCPU(id) {
-    return CPU.deleteOne({ _id: id })
-  }
 };
