@@ -7,5 +7,6 @@ const StatusSchema = new mongoose.Schema({
     nome: { type: String, required: true },
  }, { _id: false, timestamps: { createdAt: 'created_at' } });
 
-StatusSchema.plugin(AutoIncrement);
+
+StatusSchema.plugin(AutoIncrement,{ id: 'status', inc_field: '_id'});
 module.exports = mongoose.model('Status', StatusSchema);
