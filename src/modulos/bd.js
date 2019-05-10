@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable import/no-unresolved */
 const mongoose = require('mongoose');
 const moment = require('moment');
@@ -15,7 +14,7 @@ require('dotenv').config({path:'.env'})
 mongoose.connect(process.env.BDCONFIG, { useNewUrlParser: true });
 
 module.exports = {
-  async  GetTime() {
+  async GetTime() {
     const data = await Time.findOne({});
     if(!data) {
       const json = {time: 5}
@@ -36,7 +35,6 @@ module.exports = {
     return { data, 'codigo': 'indefinido' };
   },
   async UpdateCPU(id, body) {
-    await console.log(id, body);
     return CPU.updateOne({ _id: id }, { $set: body })
   },
   async NewStatus(nome, codigo) {

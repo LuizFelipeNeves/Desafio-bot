@@ -1,8 +1,6 @@
 const sleep = require('sleep');
 const bd = require('./modulos/bd'); 
 
-// não usei socket.io para realtime.
-
 async function update(page, limit) {
     const data = await bd.Listdb({}, page, limit);
     for (let index = 0; index < data.length; index++) await bd.UpdateCPU(data[index]._id, {status : await bd.RandomStatus()});
@@ -24,4 +22,5 @@ async function exec() {
     await sleep.sleep(await bd.GetTime());
     await exec()
 }
+
 (async () => await exec())();
