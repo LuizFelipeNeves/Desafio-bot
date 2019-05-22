@@ -7,10 +7,10 @@ by default the bot uses an interval of 5 seconds, but this can be changed by man
 
 ### Dependencies
 
-- Database [mongoose](https://mongoosejs.com/)
-- Auto increment [mongoose-sequence](https://telegram.org/blog/payments)
-- Dates [moment](https://core.telegram.org/bots/api#games)
-- Env [dotenv](https://core.telegram.org/bots/api#inline-mode)
+- Database [mongoose](https://www.npmjs.com/package/mongoose)
+- Auto increment [mongoose-sequence](https://www.npmjs.com/package/mongoose-sequence)
+- Dates [moment](https://www.npmjs.com/package/moment)
+- Env [dotenv](https://www.npmjs.com/package/dotenv)
 
 ## Prerequisites
 node, npm
