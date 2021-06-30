@@ -10,7 +10,7 @@
   "author": "Luiz Felipe Neves <luizfelipe2310@gmail.com> (https://github.com/LuizFelipeNeves)",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^1.19.1"
+    "nodemon": "^2.0.8"
   },
   "dependencies": {
     "dotenv": "^8.1.0",
